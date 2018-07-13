@@ -21,7 +21,7 @@ var Loader = {
   load_filter: function(url){
     if (! (Loader.requested_urls[url] || Loader.cached_urls[url])){
       Loader.requested_urls[url] = url;
-      $script(url, function() {
+      require('scriptjs')(url, function() {
         delete Loader.requested_urls[url];
         Loader.cached_urls[url] = true;
         Players.draw_delayed();

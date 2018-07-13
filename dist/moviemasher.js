@@ -1,12 +1,12 @@
 /*! moviemasher.js - v4.0.22 - 2017-12-28
 * Copyright (c) 2017 Movie Masher; Licensed  */
 /*global module:true,define:true*/
-(function (name, context, definition) { 
+(function (name, context, definition) {
 'use strict';
-if (typeof module !== "undefined" && module.exports) module.exports = definition(); 
-else if (typeof define === "function" && define.amd) define(definition); 
-else context[name] = definition(); 
-  })("MovieMasher", this, function() { 
+if (typeof module !== "undefined" && module.exports) module.exports = definition();
+else if (typeof define === "function" && define.amd) define(definition);
+else context[name] = definition();
+  })("MovieMasher", this, function() {
 'use strict';
 
 var MovieMasher = function() { // it's not necessary to instantiate, but you can
@@ -718,7 +718,7 @@ var Loader = {
   load_filter: function(url){
     if (! (Loader.requested_urls[url] || Loader.cached_urls[url])){
       Loader.requested_urls[url] = url;
-      $script(url, function() {
+      require('scriptjs')(url, function() {
         delete Loader.requested_urls[url];
         Loader.cached_urls[url] = true;
         Players.draw_delayed();
@@ -3505,5 +3505,5 @@ var Util = {
   },
 };
 MovieMasher.Util = Util;
-return MovieMasher; 
-}); 
+return MovieMasher;
+});
