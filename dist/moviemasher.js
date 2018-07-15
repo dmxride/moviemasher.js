@@ -718,11 +718,16 @@ var Loader = {
   load_filter: function(url){
     if (! (Loader.requested_urls[url] || Loader.cached_urls[url])){
       Loader.requested_urls[url] = url;
-      require('scriptjs')(url, function() {
-        delete Loader.requested_urls[url];
-        Loader.cached_urls[url] = true;
-        Players.draw_delayed();
-    });
+
+      require(url);
+      // require('scriptjs')(url, function() {
+      //   delete Loader.requested_urls[url];
+      //   Loader.cached_urls[url] = true;
+      //   Players.draw_delayed();
+      // });
+      delete Loader.requested_urls[url];
+      Loader.cached_urls[url] = true;
+      Players.draw_delayed();
     }
   },
   load_font: function(url){
